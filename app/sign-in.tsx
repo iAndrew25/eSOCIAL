@@ -1,20 +1,35 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import { useSessionStore } from "@/common/config/store";
+import { useLogin } from "@/common/queries";
 
 export default function SignIn() {
   const signIn = useSessionStore((state) => state.signIn);
+  const loginMutation = useLogin();
   const [username, setUsername] = useState("");
 
   const trimmedUsername = username.trim();
-  const canSignIn = trimmedUsername.length > 0;
+  const canSignIn = trimmedUsername.length > 0 && !loginMutation.isPending;
 
   const handleSignIn = () => {
     if (!canSignIn) {
       return;
     }
-    signIn(trimmedUsername);
+    loginMutation.mutate(trimmedUsername, {
+      onSuccess: (user) => {
+        signIn(user.username);
+      },
+      onError: () =>
+        Alert.alert("Sign in failed", "Please try again in a moment."),
+    });
   };
 
   return (
@@ -43,7 +58,9 @@ export default function SignIn() {
         disabled={!canSignIn}
         onPress={handleSignIn}
       >
-        <Text style={styles.buttonText}>Sign in</Text>
+        <Text style={styles.buttonText}>
+          {loginMutation.isPending ? "Signing in..." : "Sign in"}
+        </Text>
       </Pressable>
     </View>
   );

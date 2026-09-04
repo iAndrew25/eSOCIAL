@@ -1,33 +1,31 @@
-import { FeedCard } from "@/common/components/feed-card/feed-card";
-import { useSessionStore } from "@/common/config/store";
-import { FeedItem } from "@/common/types";
 import { useRouter } from "expo-router";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
-const FEED: FeedItem[] = [
-  {
-    id: "1",
-    username: "andrei",
-    description: "First post!",
-    imageUrl: "https://loremflickr.com/800/600",
-  },
-  { id: "2", username: "maria", description: "No picture on this one" },
-  { id: "3", username: "john", description: "This is a test description" },
-  {
-    id: "4",
-    username: "jane",
-    imageUrl: "https://loremflickr.com/800/700",
-    description: "This is a test description",
-  },
-];
+import { EmptyPlaceholder } from "@/common/components/empty-placeholder";
+import { FeedCard } from "@/common/components/feed-card";
+import { useSessionStore } from "@/common/config/store";
+import { usePosts } from "@/common/queries";
 
 export default function Index() {
   const session = useSessionStore((state) => state.session);
   const router = useRouter();
+  const {
+    data: items = [],
+    isLoading,
+    isError,
+    isFetching,
+    refetch,
+  } = usePosts();
+
+  const emptyMessage = isLoading
+    ? "Loading posts..."
+    : isError
+      ? "Couldn't load the feed. Pull to retry."
+      : "No posts in the feed yet.";
 
   return (
     <FlatList
-      data={FEED}
+      data={items}
       ListHeaderComponent={
         <View style={styles.header}>
           <Text style={styles.heading}>{session}&apos;s feed</Text>
@@ -44,7 +42,10 @@ export default function Index() {
       }
       renderItem={({ item }) => <FeedCard item={item} />}
       keyExtractor={(item) => item.id}
+      ListEmptyComponent={<EmptyPlaceholder message={emptyMessage} />}
       contentContainerStyle={styles.content}
+      refreshing={isFetching}
+      onRefresh={refetch}
     />
   );
 }
