@@ -1,11 +1,10 @@
+import { useSessionStore } from "@/config/store";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-import { useSessionStore } from "@/common/config/store";
-
 export default function SignIn() {
-  const signIn = useSessionStore((state) => state.signIn);
   const [username, setUsername] = useState("");
+  const signIn = useSessionStore((state) => state.signIn);
 
   const trimmedUsername = username.trim();
   const canSignIn = trimmedUsername.length > 0;
@@ -14,6 +13,7 @@ export default function SignIn() {
     if (!canSignIn) {
       return;
     }
+
     signIn(trimmedUsername);
   };
 

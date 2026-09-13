@@ -1,19 +1,14 @@
-import { SplashScreen, Stack } from "expo-router";
+import { useSessionStore } from "@/config/store";
+import { Stack } from "expo-router";
 import { useEffect } from "react";
 
-import { useSessionStore } from "@/common/config/store";
-
-SplashScreen.preventAutoHideAsync();
-
 export default function RootLayout() {
-  const session = useSessionStore((state) => state.session);
+  const username = useSessionStore((state) => state.username);
   const isLoading = useSessionStore((state) => state.isLoading);
   const init = useSessionStore((state) => state.init);
 
   useEffect(() => {
-    init().then(() => {
-      SplashScreen.hide();
-    });
+    init();
   }, [init]);
 
   if (isLoading) {
@@ -22,19 +17,14 @@ export default function RootLayout() {
 
   return (
     <Stack>
-      <Stack.Protected guard={!!session}>
+      <Stack.Protected guard={!!username}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="add-post"
-          options={{
-            presentation: "modal",
-            headerShown: true,
-            title: "Add post",
-          }}
+          options={{ presentation: "modal", title: "Add Post" }}
         />
       </Stack.Protected>
-
-      <Stack.Protected guard={!session}>
+      <Stack.Protected guard={!username}>
         <Stack.Screen name="sign-in" options={{ headerShown: false }} />
       </Stack.Protected>
     </Stack>

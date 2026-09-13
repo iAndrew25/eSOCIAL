@@ -1,9 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { useSessionStore } from "@/common/config/store";
+import { useSessionStore } from "@/config/store";
 
 export default function Profile() {
-  const username = useSessionStore((state) => state.session);
+  const username = useSessionStore((state) => state.username);
   const signOut = useSessionStore((state) => state.signOut);
 
   return (

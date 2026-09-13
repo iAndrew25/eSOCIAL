@@ -1,7 +1,7 @@
 import { FeedCard } from "@/common/components/feed-card/feed-card";
-import { useSessionStore } from "@/common/config/store";
 import { FeedItem } from "@/common/types";
-import { useRouter } from "expo-router";
+import { useSessionStore } from "@/config/store";
+import { router } from "expo-router";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 const FEED: FeedItem[] = [
@@ -22,15 +22,17 @@ const FEED: FeedItem[] = [
 ];
 
 export default function Index() {
-  const session = useSessionStore((state) => state.session);
-  const router = useRouter();
+  const username = useSessionStore((state) => state.username);
 
   return (
     <FlatList
       data={FEED}
+      renderItem={({ item }) => <FeedCard item={item} />}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={styles.content}
       ListHeaderComponent={
         <View style={styles.header}>
-          <Text style={styles.heading}>{session}&apos;s feed</Text>
+          <Text style={styles.heading}>{username}&apos;s feed</Text>
           <Pressable
             style={({ pressed }) => [
               styles.addButton,
@@ -42,9 +44,6 @@ export default function Index() {
           </Pressable>
         </View>
       }
-      renderItem={({ item }) => <FeedCard item={item} />}
-      keyExtractor={(item) => item.id}
-      contentContainerStyle={styles.content}
     />
   );
 }
