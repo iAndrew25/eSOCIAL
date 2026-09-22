@@ -1,32 +1,16 @@
 import { FeedCard } from "@/common/components/feed-card/feed-card";
-import { FeedItem } from "@/common/types";
+import { usePosts } from "@/config/api/posts.query";
 import { useSessionStore } from "@/config/store";
 import { router } from "expo-router";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
-const FEED: FeedItem[] = [
-  {
-    id: "1",
-    username: "andrei",
-    description: "First post!",
-    imageUrl: "https://loremflickr.com/800/600/dog",
-  },
-  { id: "2", username: "maria", description: "No picture on this one" },
-  { id: "3", username: "john", description: "This is a test description" },
-  {
-    id: "4",
-    username: "jane",
-    imageUrl: "https://loremflickr.com/800/700/dog",
-    description: "This is a test description",
-  },
-];
-
 export default function Index() {
   const username = useSessionStore((state) => state.username);
+  const { data: posts } = usePosts();
 
   return (
     <FlatList
-      data={FEED}
+      data={posts}
       renderItem={({ item }) => <FeedCard item={item} />}
       keyExtractor={(item) => item.id}
       contentContainerStyle={styles.content}

@@ -1,24 +1,36 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { FeedCard } from "@/common/components/feed-card/feed-card";
+import { usePosts } from "@/config/api/posts.query";
 import { useSessionStore } from "@/config/store";
 
 export default function Profile() {
   const username = useSessionStore((state) => state.username);
   const signOut = useSessionStore((state) => state.signOut);
+  const { data: myPosts = [] } = usePosts(username ?? undefined);
 
   return (
-    <View style={styles.header}>
-      <Text style={styles.heading}>{username}&apos;s profile</Text>
-      <Pressable
-        style={({ pressed }) => [
-          styles.signOutButton,
-          pressed && styles.pressed,
-        ]}
-        onPress={signOut}
-      >
-        <Text style={styles.signOutButtonText}>Sign out</Text>
-      </Pressable>
-    </View>
+    <FlatList
+      data={myPosts}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => <FeedCard item={item} />}
+      ListHeaderComponent={
+        <View style={styles.header}>
+          <Text style={styles.heading}>{username}&apos;s profile</Text>
+          <Pressable
+            style={({ pressed }) => [
+              styles.signOutButton,
+              pressed && styles.pressed,
+            ]}
+            onPress={signOut}
+          >
+            <Text style={styles.signOutButtonText}>Sign out</Text>
+          </Pressable>
+        </View>
+      }
+      ListEmptyComponent={<Text>No posts yet</Text>}
+      contentContainerStyle={styles.content}
+    />
   );
 }
 
@@ -33,7 +45,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 4,
-    padding: 16,
   },
   heading: {
     fontSize: 22,

@@ -1,3 +1,4 @@
+import { useLogin } from "@/config/api/auth.query";
 import { useSessionStore } from "@/config/store";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
@@ -5,6 +6,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 export default function SignIn() {
   const [username, setUsername] = useState("");
   const signIn = useSessionStore((state) => state.signIn);
+  const { mutate: login } = useLogin();
 
   const trimmedUsername = username.trim();
   const canSignIn = trimmedUsername.length > 0;
@@ -14,7 +16,11 @@ export default function SignIn() {
       return;
     }
 
-    signIn(trimmedUsername);
+    login(trimmedUsername, {
+      onSuccess: (data) => {
+        signIn(data.username);
+      },
+    });
   };
 
   return (

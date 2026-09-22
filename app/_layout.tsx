@@ -1,4 +1,6 @@
+import { queryClient } from "@/config/api/query.client";
 import { useSessionStore } from "@/config/store";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { useEffect } from "react";
 
@@ -16,17 +18,19 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Protected guard={Boolean(username)}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="add-post"
-          options={{ presentation: "modal", title: "Add Post" }}
-        />
-      </Stack.Protected>
-      <Stack.Protected guard={!Boolean(username)}>
-        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
-      </Stack.Protected>
-    </Stack>
+    <QueryClientProvider client={queryClient}>
+      <Stack>
+        <Stack.Protected guard={Boolean(username)}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="add-post"
+            options={{ presentation: "modal", title: "Add Post" }}
+          />
+        </Stack.Protected>
+        <Stack.Protected guard={!Boolean(username)}>
+          <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+        </Stack.Protected>
+      </Stack>
+    </QueryClientProvider>
   );
 }
