@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`UserAvatar snapshot — fallback avatar 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      },
+      {
+        "backgroundColor": "hsl(63, 55%, 55%)",
+        "borderRadius": 30,
+        "height": 60,
+        "width": 60,
+      },
+    ]
+  }
+  testID="user-avatar-fallback"
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#fff",
+          "fontWeight": "700",
+        },
+        {
+          "fontSize": 26.4,
+        },
+      ]
+    }
+  >
+    C
+  </Text>
+</View>
+`;
+
+exports[`UserAvatar snapshot — image avatar 1`] = `
+<View
+  contentFit="cover"
+  source="http://example.com/carol.jpg"
+  style={
+    [
+      {
+        "backgroundColor": "#f0f0f0",
+      },
+      {
+        "borderRadius": 30,
+        "height": 60,
+        "width": 60,
+      },
+    ]
+  }
+  testID="user-avatar-image"
+  transition={200}
+/>
+`;

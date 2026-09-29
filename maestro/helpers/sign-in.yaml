@@ -1,0 +1,26 @@
+appId: com.anonymous.eSOCIAL
+name: "Helper — Sign in as ${USERNAME}"
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+    stopApp: true
+
+# Wait for app to initialize (loading state shows blank screen)
+- extendedWaitUntil:
+    visible: "Welcome"
+    timeout: 10000
+
+# Tap the text input and type username
+- tapOn:
+    below:
+      text: "Enter a username to sign in."
+    index: 0
+- inputText: ${USERNAME}
+- tapOn: "Sign in"
+
+# Wait for the feed to appear
+- extendedWaitUntil:
+    visible:
+      text: "${USERNAME}'s feed"
+    timeout: 5000

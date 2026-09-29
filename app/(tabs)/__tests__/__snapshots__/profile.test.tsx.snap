@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Profile Header snapshot — profile header with fallback avatar 1`] = `
+<View>
+  <View
+    style={
+      {
+        "backgroundColor": "#2563eb",
+        "height": 140,
+      }
+    }
+    testID="profile-banner"
+  />
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="avatar-picker"
+  >
+    <View
+      style={
+        [
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {
+            "backgroundColor": "hsl(349, 55%, 55%)",
+            "borderRadius": 40,
+            "height": 80,
+            "width": 80,
+          },
+        ]
+      }
+      testID="user-avatar-fallback"
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#fff",
+              "fontWeight": "700",
+            },
+            {
+              "fontSize": 35.2,
+            },
+          ]
+        }
+      >
+        A
+      </Text>
+    </View>
+    <Text>
+      camera
+    </Text>
+  </View>
+  <Text>
+    alice
+  </Text>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="sign-out-button"
+  >
+    <Text>
+      Sign out
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Profile Header snapshot — profile header with image avatar 1`] = `
+<View>
+  <View
+    style={
+      {
+        "backgroundColor": "#2563eb",
+        "height": 140,
+      }
+    }
+    testID="profile-banner"
+  />
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="avatar-picker"
+  >
+    <View
+      contentFit="cover"
+      source="http://example.com/alice.jpg"
+      style={
+        [
+          {
+            "backgroundColor": "#f0f0f0",
+          },
+          {
+            "borderRadius": 40,
+            "height": 80,
+            "width": 80,
+          },
+        ]
+      }
+      testID="user-avatar-image"
+      transition={200}
+    />
+    <Text>
+      camera
+    </Text>
+  </View>
+  <Text>
+    alice
+  </Text>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="sign-out-button"
+  >
+    <Text>
+      Sign out
+    </Text>
+  </View>
+</View>
+`;

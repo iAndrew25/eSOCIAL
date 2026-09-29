@@ -1,0 +1,48 @@
+appId: com.anonymous.eSOCIAL
+name: "Sign Out and Sign Back In"
+tags:
+  - smoke
+  - auth
+---
+# Sign in as first user
+- runFlow:
+    file: "helpers/sign-in.yaml"
+    env:
+      USERNAME: "userA"
+
+# Navigate to Profile
+- tapOn:
+    text: "Profile, tab, 2 of 2"
+- extendedWaitUntil:
+    visible: "userA"
+    timeout: 3000
+
+# Sign out
+- tapOn: "Sign out"
+
+# Should return to sign-in screen — wait longer for the transition
+- extendedWaitUntil:
+    visible: "Enter a username to sign in."
+    timeout: 10000
+
+# Sign in as a different user
+- tapOn:
+    below:
+      text: "Enter a username to sign in."
+    index: 0
+- inputText: "userB"
+- tapOn: "Sign in"
+
+# Verify we're signed in as the new user
+- extendedWaitUntil:
+    visible:
+      text: "userB's feed"
+    timeout: 5000
+
+# Verify Profile shows new user
+- tapOn:
+    text: "Profile, tab, 2 of 2"
+- extendedWaitUntil:
+    visible: "userB"
+    timeout: 3000
+- assertVisible: "Sign out"

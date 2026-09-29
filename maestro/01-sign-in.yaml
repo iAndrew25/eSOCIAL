@@ -1,0 +1,37 @@
+appId: com.anonymous.eSOCIAL
+name: "Sign In Flow"
+tags:
+  - smoke
+  - auth
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+    stopApp: true
+
+# Wait for app to initialize — loading state shows blank, then sign-in appears
+- extendedWaitUntil:
+    visible: "Welcome"
+    timeout: 10000
+- assertVisible: "Enter a username to sign in."
+
+# Tap the text input area (below the subtitle text)
+- tapOn:
+    below:
+      text: "Enter a username to sign in."
+    index: 0
+- inputText: "testuser"
+- tapOn: "Sign in"
+
+# Should land on the Feed tab
+- extendedWaitUntil:
+    visible:
+      text: "testuser's feed"
+    timeout: 5000
+- assertVisible: "Add post"
+
+# Tab bar should be visible
+- assertVisible:
+    text: "Feed, tab, 1 of 2"
+- assertVisible:
+    text: "Profile, tab, 2 of 2"

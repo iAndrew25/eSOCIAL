@@ -1,0 +1,33 @@
+appId: com.anonymous.eSOCIAL
+name: "Add a New Text Post"
+tags:
+  - smoke
+  - feed
+---
+- runFlow:
+    file: "helpers/sign-in.yaml"
+    env:
+      USERNAME: "poster"
+
+# Tap "Add post" button in the feed header
+- tapOn: "Add post"
+- extendedWaitUntil:
+    visible: "Add Post"
+    timeout: 3000
+
+# Type a description
+- tapOn: "What's on your mind?"
+- inputText: "My first post from Maestro!"
+
+# Tap the green "Add post" submit button (below "Add picture")
+- tapOn:
+    text: "Add post"
+    below:
+      text: "Add picture"
+
+# Should return to the feed with the new post visible
+- extendedWaitUntil:
+    visible:
+      text: "poster's feed"
+    timeout: 5000
+- assertVisible: "My first post from Maestro!"

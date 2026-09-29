@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`FeedCard snapshot — card with avatar and image 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fff",
+      "borderColor": "#eee",
+      "borderRadius": 16,
+      "borderWidth": 1,
+      "gap": 10,
+      "overflow": "hidden",
+      "paddingVertical": 12,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 10,
+        "paddingHorizontal": 12,
+      }
+    }
+  >
+    <View
+      contentFit="cover"
+      source="http://example.com/avatar.jpg"
+      style={
+        [
+          {
+            "backgroundColor": "#f0f0f0",
+          },
+          {
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
+      }
+      testID="user-avatar-image"
+      transition={200}
+    />
+    <Text
+      style={
+        {
+          "fontSize": 15,
+          "fontWeight": "700",
+        }
+      }
+    >
+      alice
+    </Text>
+  </View>
+  <Image
+    source={
+      {
+        "uri": "http://example.com/photo.jpg",
+      }
+    }
+    style={
+      {
+        "aspectRatio": 1.3333333333333333,
+        "backgroundColor": "#f0f0f0",
+        "width": "100%",
+      }
+    }
+  />
+  <Text
+    style={
+      {
+        "color": "#333",
+        "fontSize": 14,
+        "paddingHorizontal": 12,
+      }
+    }
+  >
+    Hello world
+  </Text>
+</View>
+`;
+
+exports[`FeedCard snapshot — card with fallback avatar, no image 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#fff",
+      "borderColor": "#eee",
+      "borderRadius": 16,
+      "borderWidth": 1,
+      "gap": 10,
+      "overflow": "hidden",
+      "paddingVertical": 12,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 10,
+        "paddingHorizontal": 12,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          {
+            "backgroundColor": "hsl(349, 55%, 55%)",
+            "borderRadius": 20,
+            "height": 40,
+            "width": 40,
+          },
+        ]
+      }
+      testID="user-avatar-fallback"
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#fff",
+              "fontWeight": "700",
+            },
+            {
+              "fontSize": 17.6,
+            },
+          ]
+        }
+      >
+        A
+      </Text>
+    </View>
+    <Text
+      style={
+        {
+          "fontSize": 15,
+          "fontWeight": "700",
+        }
+      }
+    >
+      alice
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "color": "#333",
+        "fontSize": 14,
+        "paddingHorizontal": 12,
+      }
+    }
+  >
+    Hello world
+  </Text>
+</View>
+`;

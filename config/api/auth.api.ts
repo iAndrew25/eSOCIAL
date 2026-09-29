@@ -2,6 +2,7 @@ import { API_URL } from "./config";
 
 export type User = {
   username: string;
+  avatarUrl?: string | null;
 };
 
 export async function login(username: string): Promise<User> {

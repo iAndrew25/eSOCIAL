@@ -18,7 +18,7 @@ export default function SignIn() {
 
     login(trimmedUsername, {
       onSuccess: (data) => {
-        signIn(data.username);
+        signIn(data.username, data.avatarUrl);
       },
     });
   };

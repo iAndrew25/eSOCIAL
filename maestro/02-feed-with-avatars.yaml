@@ -1,0 +1,44 @@
+appId: com.anonymous.eSOCIAL
+name: "Feed Shows Posts With Avatars"
+tags:
+  - smoke
+  - feed
+---
+- runFlow:
+    file: "helpers/sign-in.yaml"
+    env:
+      USERNAME: "feedviewer"
+
+# Verify first post (alice) is visible with avatar
+- assertVisible: "alice"
+- assertVisible: "Morning hike above the clouds..."
+
+# Verify second post (bob) is visible
+- assertVisible: "bob"
+- assertVisible: "Just a quick text update, no photo today."
+
+# Scroll down to see more posts
+- scroll
+- waitForAnimationToEnd
+
+# Verify carol's post appears after scrolling
+- scrollUntilVisible:
+    element: "carol"
+    direction: DOWN
+    timeout: 5000
+- assertVisible: "carol"
+
+# Scroll further to see remaining posts
+- scrollUntilVisible:
+    element: "dave"
+    direction: DOWN
+    timeout: 5000
+- assertVisible: "dave"
+- assertVisible: "New setup finally complete."
+
+- scrollUntilVisible:
+    element: "erin"
+    direction: DOWN
+    timeout: 5000
+- assertVisible: "erin"
+- assertVisible: "Anyone else swamped this week? Text-only post."

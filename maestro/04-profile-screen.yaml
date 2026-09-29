@@ -1,0 +1,24 @@
+appId: com.anonymous.eSOCIAL
+name: "Profile Screen Layout"
+tags:
+  - smoke
+  - profile
+---
+- runFlow:
+    file: "helpers/sign-in.yaml"
+    env:
+      USERNAME: "profileuser"
+
+# Navigate to Profile tab
+- tapOn:
+    text: "Profile, tab, 2 of 2"
+- extendedWaitUntil:
+    visible: "Profile"
+    timeout: 3000
+
+# Verify profile screen elements — username and sign out
+- assertVisible: "profileuser"
+- assertVisible: "Sign out"
+
+# New user has no posts
+- assertVisible: "No posts yet"
